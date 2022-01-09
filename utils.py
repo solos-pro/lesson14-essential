@@ -25,12 +25,33 @@ def get_movie_by_title(title):
 
     return data
 
-print(get_movie_by_title("1994"))
 
 def get_all_movies_between_years(year1, year2):
+    con = sqlite3.connect("netflix.db")
+    sqlite_query = f"""
+        SELECT `title`, `country`, `release_year`, `listed_in`, `description`
+        FROM netflix
+        WHERE `release_year` BETWEEN {year1} AND {year2} 
+        LIMIT 100
+        """
+    cur = con.cursor()
+    cur.execute(sqlite_query)
 
-    pass
+    data = []
+    for row in cur.fetchall():
+        movie = {
+            "title": row[0],
+            "country": row[1],
+            "release_year": row[2],
+            "genre": row[3],
+            "description": row[4]
+            }
+        data.append(movie)
 
+    con.close()
+
+    return data
+print(get_all_movies_between_years(2020, 2021))
 
 def get_all_movies_by_genre(genre):
 
