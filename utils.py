@@ -11,8 +11,19 @@ def get_movie_by_title(title):
         LIMIT 1
         """
     cur = con.cursor()
-    data = cur.execute(sqlite_query)
-    print(data.fetchone())
+    cur.execute(sqlite_query)
+    data_raw =cur.fetchone()
+
+    data = {
+        "title": data_raw[0],
+        "country": data_raw[1],
+        "release_year": data_raw[2],
+        "genre": data_raw[3],
+        "description": data_raw[4]
+        }
+    con.close()
+
+    return data
 
 print(get_movie_by_title("1994"))
 
