@@ -22,23 +22,27 @@ FROM netflix
 WHERE `release_year` BETWEEN 2020 AND 2021 
 LIMIT 100
 """
+#3
 """
 SELECT `title`, `rating`, `description`
 FROM netflix
 WHERE `rating` IN ("G", "PG", "PG-13")  
 """
+#4
 """
 SELECT `title`, `rating`, `description`, `listed_in`
 FROM netflix
 WHERE `listed_in` LIKE "%Drama%"
 LIMIT 100
 """
+#5
 """
 SELECT GROUP_CONCAT(`cast`, ",") as cast
 FROM netflix
 WHERE `cast` LIKE "%Jack Black%" AND `cast` LIKE "%Dustin Hoffman%"
 LIMIT 100
 """
+#6
 """
 SELECT `title`, `rating`, `description`, `listed_in`, `release_year`
 FROM netflix

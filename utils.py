@@ -64,8 +64,25 @@ def get_all_movies_by_rating(rating):
 
 
 def get_actors_company(first, second):
+    con = sqlite3.connect("netflix.db")
+    sqlite_query = f"""
+        SELECT GROUP_CONCAT(`cast`, ",") as cast
+        FROM netflix
+        WHERE `cast` LIKE "%{first}%" AND `cast` LIKE "%{second}%"
+        LIMIT 100
+        """
+    cur = con.cursor()
+    cur.execute(sqlite_query)
+    data_raw = cur.fetchone()
+    con.close()
 
-    pass
+    actors_list = data_raw[0].split(', ')
+    actors_list_unique = set(actors_list)
+
+    actors_list_unique = actors_list_unique.remove(first)
+    actors_list_unique = actors_list_unique.remove(second)
+
+    return actors_list_unique
 
 
 def filter_movies(movie_type, year, genre):
