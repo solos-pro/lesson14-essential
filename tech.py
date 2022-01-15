@@ -18,7 +18,8 @@ LIMIT 100
 """
 SELECT `title`, `rating`, `description`
 FROM netflix
-WHERE `rating` IN ("G", "PG", "PG-13")  
+WHERE `rating` IN ("G", "PG", "PG-13")
+ORDER BY 'rating' 
 """
 #4
 """

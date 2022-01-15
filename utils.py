@@ -53,12 +53,43 @@ def get_all_movies_between_years(year1, year2):
     return data
 # print(get_all_movies_between_years(2020, 2021))
 
-def get_all_movies_by_genre(genre):
+def get_all_movies_by_rating(age_group):
+    if age_group == 'children':
+        age_group = ('G')
+    if age_group == 'family':
+        age_group = ('PG', 'PG-13')
+    if age_group == 'adult':
+        age_group = ('R', 'NC-17')
+    print(type(age_group))
+
+    age_group = set(age_group)
+    con = sqlite3.connect("netflix.db")
+    sqlite_query = f"""
+        SELECT `title`, `rating`, `description`
+        FROM netflix
+        WHERE `rating` IN {age_group}
+        ORDER BY 'rating'  
+        LIMIT 1
+        """
+    cur = con.cursor()
+    cur.execute(sqlite_query)
+
+    data = []
+    for row in cur.fetchall():
+        movie = {
+            "title": row[0],
+            "rating": row[1],
+            "description": row[2]
+            }
+        data.append(movie)
+
+    con.close()
+    return data
 
     pass
 
 
-def get_all_movies_by_rating(rating):
+def get_all_movies_by_genre(genre):
 
     pass
 

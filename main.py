@@ -1,6 +1,6 @@
 import jsonify, json
 from flask import Flask, render_template, request
-from utils import get_movie_by_title, get_all_movies_between_years
+from utils import *
 
 app = Flask(__name__)
 
@@ -13,9 +13,14 @@ def by_title(title):
 
 @app.route('/years/<int:beginning>/to/<int:ending>', )
 def by_years(beginning, ending):
-    movie = get_all_movies_between_years(beginning, ending)
-    print(movie)
-    return json.dumps(movie)
+    movies = get_all_movies_between_years(beginning, ending)
+    return json.dumps(movies)
+
+
+@app.route('/rating/<age>', )
+def by_rating(age):
+    movies = get_all_movies_by_rating(age)
+    return json.dumps(movies)
 
 
 app.run(debug=True)
