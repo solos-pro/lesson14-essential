@@ -12,7 +12,7 @@ def get_movie_by_title(title):
         """
     cur = con.cursor()
     cur.execute(sqlite_query)
-    data_raw =cur.fetchone()
+    data_raw = cur.fetchone()
 
     data = {
         "title": data_raw[0],

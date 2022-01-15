@@ -1,8 +1,15 @@
 import sqlite3, jsonify
 from flask import Flask, render_template, request
-from utils import *
+from utils import get_movie_by_title
 
-@app.route('/movies/<title>'):
+app = Flask(__name__)
+
+
+@app.route('/movies/<title>', )
 def index_func(title):
     movie = get_movie_by_title(title)
-    print(movie)
+    return movie
+
+app.run(debug=True)
+
+# print(get_movie_by_title('1994'))
