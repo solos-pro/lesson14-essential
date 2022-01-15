@@ -51,7 +51,7 @@ def get_all_movies_between_years(year1, year2):
     con.close()
 
     return data
-print(get_all_movies_between_years(2020, 2021))
+# print(get_all_movies_between_years(2020, 2021))
 
 def get_all_movies_by_genre(genre):
 
@@ -64,6 +64,10 @@ def get_all_movies_by_rating(rating):
 
 
 def get_actors_company(first, second):
+    """
+    task #5.
+    A function returns a list of colleagues of two actors who play with them twice or more times.
+    """
     con = sqlite3.connect("netflix.db")
     sqlite_query = f"""
         SELECT GROUP_CONCAT(`cast`, ",") as cast
@@ -79,10 +83,12 @@ def get_actors_company(first, second):
     actors_list = data_raw[0].split(', ')
     actors_list_unique = set(actors_list)
 
-    actors_list_unique = actors_list_unique.remove(first)
-    actors_list_unique = actors_list_unique.remove(second)
-
-    return actors_list_unique
+    suitable_actor = []
+    for actor in actors_list_unique:
+        if actor != first and actor != second and actors_list.count(actor) >= 2:
+            suitable_actor.append(actor)
+    print(suitable_actor)
+    return suitable_actor
 
 
 def filter_movies(movie_type, year, genre):
