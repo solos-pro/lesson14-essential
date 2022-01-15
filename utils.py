@@ -1,4 +1,5 @@
-import json
+import jsonify
+import pprint
 import sqlite3
 
 def get_movie_by_title(title):
@@ -49,7 +50,6 @@ def get_all_movies_between_years(year1, year2):
         data.append(movie)
 
     con.close()
-
     return data
 # print(get_all_movies_between_years(2020, 2021))
 
