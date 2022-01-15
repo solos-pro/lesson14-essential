@@ -1,21 +1,8 @@
-import sqlite3
-# import Flask
+import sqlite3, jsonify
+from flask import Flask, render_template, request
+from utils import *
 
-con = sqlite3.connect("netflix.db")
-sqlite_query = "SELECT * FROM netflix LIMIT 1"
-cur = con.cursor()
-data = cur.execute(sqlite_query)
-print(data.fetchone())
-
-
-con = sqlite3.connect("netflix.db")
-cur = con.cursor()
-sqlite_query = """
-    SELECT COUNT(title)  FROM netflix
-    WHERE country LIKE '%India%'
-
-"""
-cur.execute(sqlite_query)
-executed_query = cur.fetchall()
-
-print(executed_query)
+@app.route('/movies/<title>'):
+def index_func(title):
+    movie = get_movie_by_title(title)
+    print(movie)
