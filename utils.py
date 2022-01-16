@@ -54,41 +54,32 @@ def get_all_movies_between_years(year1, year2):
 # print(get_all_movies_between_years(2020, 2021))
 
 def get_all_movies_by_rating(age_group):
-    """
+
     if age_group == 'children':
-        age_group = 'G'
-    if age_group == 'family':
-        age_group = ('PG', 'PG-13')
-    if age_group == 'adult':
-        age_group = ('R', 'NC-17')
-    print(type(age_group))
-    """
-    if age_group == 'children':
-        sqlite_query = f"""
+        sqlite_query = """
             SELECT `title`, `rating`, `description`
             FROM netflix
-            WHERE `rating`='G'
-            ORDER BY 'rating'  
-            LIMIT 2
+            WHERE `rating` IN ('G')
+            ORDER BY 'rating'
+            LIMIT 5
             """
     if age_group == 'family':
-        sqlite_query = f"""
+        sqlite_query = """
             SELECT `title`, `rating`, `description`
             FROM netflix
-            WHERE `rating` in ('PG', 'PG-13')
-            ORDER BY 'rating'  
-            LIMIT 2
+            WHERE `rating` IN ('PG', 'PG-13')
+            ORDER BY 'rating'
+            LIMIT 5
             """
     if age_group == 'adult':
-        sqlite_query = f"""
+        sqlite_query = """
             SELECT `title`, `rating`, `description`
             FROM netflix
-            WHERE `rating` in ('R', 'NC-17')
-            ORDER BY 'rating'  
-            LIMIT 2
+            WHERE `rating` IN ('R', 'NC-17')
+            ORDER BY 'rating'
+            LIMIT 5
             """
 
-    # age_group = set(age_group)
     con = sqlite3.connect("netflix.db")
     cur = con.cursor()
     cur.execute(sqlite_query)
