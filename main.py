@@ -23,6 +23,12 @@ def by_rating(age):
     return json.dumps(movies)
 
 
+@app.route('/genre/<genre>', )
+def by_genre(genre):
+    movies = get_all_movies_by_genre(genre)
+    return json.dumps(movies)
+
+
 app.run(debug=True)
 
 # print(get_movie_by_title('1994'))
