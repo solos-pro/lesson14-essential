@@ -102,8 +102,8 @@ def get_all_movies_by_rating(age_group):
 def get_all_movies_by_genre(genre):
     """
      task #4.
-     A function returns 10 newest movies ordered by genre (Drama,
-     Horror, Crime, Adventure, Anime).
+     A function returns 10 newest movies ordered by <genre> (Drama,
+     Horror, Crime, Adventure, Anime, ...).
      """
     con = sqlite3.connect("netflix.db")
     sqlite_query = f"""
@@ -135,9 +135,9 @@ def get_actors_company(first, second):
     """
     con = sqlite3.connect("netflix.db")
     sqlite_query = f"""
-        SELECT GROUP_CONCAT(`cast`, ",") as cast
+        SELECT GROUP_CONCAT(`cast`, ',') as cast
         FROM netflix
-        WHERE `cast` LIKE "%{first}%" AND `cast` LIKE "%{second}%"
+        WHERE `cast` LIKE '%{first}%' AND `cast` LIKE '%{second}%'
         LIMIT 100
         """
     cur = con.cursor()

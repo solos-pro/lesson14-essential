@@ -29,6 +29,12 @@ def by_genre(genre):
     return json.dumps(movies)
 
 
+@app.route('/collab/<actor1>/<actor2>', )
+def actors_collab(actor1, actor2):
+    actors = get_actors_company(actor1, actor2)
+    return json.dumps(actors)
+
+
 app.run(debug=True)
 
 # print(get_movie_by_title('1994'))
