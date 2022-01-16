@@ -35,6 +35,11 @@ def actors_collab(actor1, actor2):
     return json.dumps(actors)
 
 
+@app.route('/filter/<movie_type>/<int:year>/<genre>', )
+def filter_movies_func(movie_type, year, genre):
+    movies = filter_movies(movie_type, year, genre)
+    return json.dumps(movies)
+
+
 app.run(debug=True)
 
-# print(get_movie_by_title('1994'))

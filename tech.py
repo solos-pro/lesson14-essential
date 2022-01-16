@@ -30,17 +30,17 @@ LIMIT 100
 """
 #5
 """
-SELECT GROUP_CONCAT(`cast`, ",") as cast
+SELECT GROUP_CONCAT(`cast`, ',') as cast
 FROM netflix
-WHERE `cast` LIKE "%Jack Black%" AND `cast` LIKE "%Dustin Hoffman%"
+WHERE `cast` LIKE '%Jack Black%' AND `cast` LIKE '%Dustin Hoffman%'
 LIMIT 100
 """
 #6
 """
 SELECT `title`, `rating`, `description`, `listed_in`, `release_year`
 FROM netflix
-WHERE `type`="Movie"
+WHERE `type`='Movie'
 AND `release_year`=2020
-AND `listed_in` LIKE "%Drama%"
+AND `listed_in` LIKE '%Drama%'
 LIMIT 100
 """

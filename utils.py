@@ -157,6 +157,31 @@ def get_actors_company(first, second):
 
 
 def filter_movies(movie_type, year, genre):
+    """
+    task #6.
+    A function returns a list of movies depend on type, year, genre.
+    """
+    con = sqlite3.connect("netflix.db")
+    sqlite_query = f"""
+    SELECT `title`, `rating`, `description`, `listed_in`, `release_year`
+    FROM netflix
+    WHERE `type`='{movie_type}'
+    AND `release_year`={year}
+    AND `listed_in` LIKE '%{genre}%'
+    LIMIT 10
+    """
+    cur = con.cursor()
+    cur.execute(sqlite_query)
 
-    pass
+    data = []
+    for row in cur.fetchall():
+        movie = {
+            "title": row[0],
+            "description": row[2],
+            "genre": row[3]
+            }
+        data.append(movie)
+
+    con.close()
+    return data
 
