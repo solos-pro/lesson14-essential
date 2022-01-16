@@ -3,6 +3,10 @@ import pprint
 import sqlite3
 
 def get_movie_by_title(title):
+    """
+    #1  Returns movie by title.
+    http://localhost:5000/movies/1994
+    """
     con = sqlite3.connect("netflix.db")
     sqlite_query = f"""
         SELECT `title`, `country`, `release_year`, `listed_in`, `description`
@@ -28,6 +32,10 @@ def get_movie_by_title(title):
 
 
 def get_all_movies_between_years(year1, year2):
+    """
+    #2  Returns movies from <year> to <year> inclusive.
+    http://localhost:5000/years/2000/to/2011
+    """
     con = sqlite3.connect("netflix.db")
     sqlite_query = f"""
         SELECT `title`, `country`, `release_year`, `listed_in`, `description`
@@ -54,7 +62,10 @@ def get_all_movies_between_years(year1, year2):
 # print(get_all_movies_between_years(2020, 2021))
 
 def get_all_movies_by_rating(age_group):
-
+    """
+    #3  Filter by age permission.
+    http://localhost:5000/rating/children
+    """
     if age_group == 'children':
         sqlite_query = """
             SELECT `title`, `rating`, `description`
@@ -101,9 +112,9 @@ def get_all_movies_by_rating(age_group):
 
 def get_all_movies_by_genre(genre):
     """
-     task #4.
-     A function returns 10 newest movies ordered by <genre> (Drama,
+     #4 A function returns 10 newest movies ordered by <genre> (Drama,
      Horror, Crime, Adventure, Anime, ...).
+     http://localhost:5000/genre/Crime
      """
     con = sqlite3.connect("netflix.db")
     sqlite_query = f"""
@@ -130,8 +141,8 @@ def get_all_movies_by_genre(genre):
 
 def get_actors_company(first, second):
     """
-    task #5.
-    A function returns a list of colleagues of two actors who play with them twice or more times.
+    #5  A function returns a list of colleagues of two actors who play with them twice or more times.
+    http://localhost:5000/collab/Jack%20Black/Dustin%20Hoffman
     """
     con = sqlite3.connect("netflix.db")
     sqlite_query = f"""
@@ -158,8 +169,8 @@ def get_actors_company(first, second):
 
 def filter_movies(movie_type, year, genre):
     """
-    task #6.
-    A function returns a list of movies depend on type, year, genre.
+    #6  A function returns a list of movies depend on type, year, genre.
+    http://localhost:5000/filter/Movie/2020/Drama
     """
     con = sqlite3.connect("netflix.db")
     sqlite_query = f"""
