@@ -163,7 +163,6 @@ def get_actors_company(first, second):
     for actor in actors_list_unique:
         if actor != first and actor != second and actors_list.count(actor) >= 2:
             suitable_actor.append(actor)
-    print(suitable_actor)
     return suitable_actor
 
 
